@@ -7,7 +7,7 @@ using UnityToolbarExtender;
 namespace GitTools{
 [InitializeOnLoad] public class GitHelper{
 
-	const  bool allowCodeChanges = true ;
+	const  bool allowCodeChanges = false;
 	const  float  Delay = 120f;
 	static float  stamp = -100f;
 	static string status = null;
@@ -35,6 +35,9 @@ namespace GitTools{
 		string @out = null;
 		@out += GitRunner.Cmd("add --all");
 		@out += GitRunner.Cmd($"commit -m \"{msg}\"");
+		// Git push seems to be lacking good sense in deciding what
+		// goes to stderr/stdout; silencing until we figure what
+		// should be reported as an error.
 		@out += GitRunner.Cmd("push -q");
 		Debug.Log(@out);
 		stamp = 0;
