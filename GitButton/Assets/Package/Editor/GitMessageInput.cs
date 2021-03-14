@@ -19,7 +19,7 @@ public class GitMessageInput : EditorWindow
             var x = 320 - width/2;
             var y = 200 - height/2;
         #endif
-        Debug.Log($"Show window at {x}, {y}");
+        //ebug.Log($"Show window at {x}, {y}");
         instance.position
             = new Rect(x, y, width, height);
         instance.ShowPopup();
