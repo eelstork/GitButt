@@ -7,7 +7,7 @@ using UnityToolbarExtender;
 namespace GitTools{
 [InitializeOnLoad] public class GitHelper{
 
-	const  bool allowCodeChanges = true ;
+	const  bool allowCodeChanges = true;
 	const  float  Delay = 120f;
 	static float  stamp = -100f;
 	static string status = null;
