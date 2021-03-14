@@ -10,11 +10,18 @@ Simple git integration for non-programmers; use git from Unity without worrying 
 
 Note: *By default* Git-butt won't let you push modified \*.cs files
 
-## Git-URL
+## Release *.pkg
+
+Grab a Unity package here:
+https://github.com/eelstork/GitButt/releases/tag/0.0.1
+
+## Via UPM [BROKEN]
 
 Add to the Unity package manager (UPM) via:
 
 https://github.com/eelstork/GitButt.git?path=GitButton/Assets/Package
+
+As of writing the UPM package will install, but the little git button does not appear.
 
 ## How-to
 
