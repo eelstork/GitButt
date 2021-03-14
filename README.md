@@ -25,7 +25,7 @@ As of writing the UPM package will install, but the little git button does not a
 
 ## How-to
 
-After installing the UPM package the little git button will appear.
+After install, the little git button will appear at the top of the editor window.
 
 - `( ☁ )` everything is nice, and you made no changes.
 - `( ⇣ )` remote changes detected, press to update.
