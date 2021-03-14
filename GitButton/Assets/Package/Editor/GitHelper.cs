@@ -35,7 +35,7 @@ namespace GitTools{
 		string @out = null;
 		@out += GitRunner.Cmd("add --all");
 		@out += GitRunner.Cmd($"commit -m \"{msg}\"");
-		@out += GitRunner.Cmd("push");
+		@out += GitRunner.Cmd("push -q");
 		Debug.Log(@out);
 		stamp = 0;
 	}
