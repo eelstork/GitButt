@@ -15,6 +15,7 @@ public class GitMessageInput : EditorWindow
             var x = Screen.currentResolution.width / 4 - width/2;
             var y = Screen.currentResolution.height / 4 - height/2;
         #else
+            // Just give up centering this popup.
             var x = 320 - width/2;
             var y = 200 - height/2;
         #endif
