@@ -11,8 +11,13 @@ public class GitMessageInput : EditorWindow
             instance
                 = ScriptableObject.CreateInstance<GitMessageInput>();
         }
-        var x = Screen.currentResolution.width / 4 - width/2;
-        var y = Screen.currentResolution.height / 4 - height/2;
+        #if UNITY_2019_1_OR_NEWER
+            var x = Screen.currentResolution.width / 4 - width/2;
+            var y = Screen.currentResolution.height / 4 - height/2;
+        #else
+            var x = 320 - width/2;
+            var y = 200 - height/2;
+        #endif
         Debug.Log($"Show window at {x}, {y}");
         instance.position
             = new Rect(x, y, width, height);
@@ -20,7 +25,7 @@ public class GitMessageInput : EditorWindow
     }
 
     void OnGUI(){
-        
+
         Label("Enter commit message:");
         BeginHorizontal();
         Space(16);
