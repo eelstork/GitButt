@@ -23,8 +23,8 @@ After installing the UPM package the little git button will appear.
 - `( ☁ )` everything is nice, and you made no changes.
 - `( ⇣ )` remote changes detected, press to update.
 - `( ↑ )` you have made changes; press to enter a commit message and push.
-- `( ℂ )` you have made changes, including source changes; not pushing this for you.
-- `( X )` git-butt is groping in the dark; use your favorite git front end and/or shout for assistance (don't submit an issue; git-button is *trying* to etch a line between what it can, or by design is not intended to, help with).
+- `( ℂ )` C# source changes; not pushing this for you.
+- `( X )` git-butt is groping in the dark; use your favorite git front end and/or shout for assistance (don't submit an issue; git-button is *trying* to draw a line between what it can, or by design is not intended to, help with).
 
 ## Acknowledgements
 
