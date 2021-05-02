@@ -22,7 +22,7 @@ public static string Cmd(string gitCommand) {
 	};
 
 	try {
-		process.Start();  // Try to start it, catching any exceptions if it fails
+		process.Start(); 
 	} catch (Exception e) {
 		// For now just assume its failed cause it can't find git.
 		UnityEngine.Debug.LogError("Git is not set-up correctly, required to be on PATH, and to be a git project.");

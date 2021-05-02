@@ -2,34 +2,17 @@ using System.Linq;
 using UnityEngine;
 ﻿using UnityEditor;
 using UnityToolbarExtender;
-//using Active.Howl;
 
 namespace GitTools{
 [InitializeOnLoad] public class GitHelper{
 
-	const  bool allowCodeChanges = false;
+	const  bool AllowCodeChanges = false;
 	const  float  Delay = 120f;
 	static float  stamp = -100f;
 	static string status = null;
 
 	static GitHelper()
 	=> ToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
-
-	static void ProcessChanges() {
-		string @out = null;
-		if(NeedsUpdate()){
-			@out = GitRunner.Cmd("pull");
-			Debug.Log(@out);
-			stamp = 0;
-		}else if(HasCodeChanges() && !allowCodeChanges){
-			Debug.LogWarning(
-				$"Committing code changes is not allowed\n{status}");
-		}else if(HasChanges()){
-			GitMessageInput.ShowDialog();
-		}else{
-			Debug.Log("Git repository up to date; no local changes.");
-		}
-	}
 
 	public static void CommitWithMessage(string msg){
 		string @out = null;
@@ -43,20 +26,41 @@ namespace GitTools{
 		stamp = 0;
 	}
 
-	public static void MarkDirty(){
-		stamp = 0f;
-	}
+	public static void MarkDirty() => stamp = 0f;
 
 	static void OnToolbarGUI(){
-		//GUILayout.FlexibleSpace();
-		string label = GetLabelText();
-		//if(HasChanges(forceCheck: false)) label = "↑";
-
-		if(GUILayout.Button(
-			new GUIContent(label, StatusString()),
-			GetStyle()))
-		{
+		GUILayout.Space(34);
+		string label, info;
+		GUIStyle style;
+		try{
+			label = GetLabelText();
+			info  = StatusString();
+			style = GetStyle();
+		}catch(System.Exception e){
+			GUI.enabled = false;
+			label = "∅";
+			info = e.Message;
+			style = Styles.alert;
+		}
+		if(GUILayout.Button(new GUIContent(label, info), style)){
 			ProcessChanges();
+		}
+		GUI.enabled = true;
+	}
+
+	static void ProcessChanges() {
+		string @out = null;
+		if(NeedsUpdate()){
+			@out = GitRunner.Cmd("pull");
+			Debug.Log(@out);
+			stamp = 0;
+		}else if(HasCodeChanges() && !AllowCodeChanges){
+			Debug.LogWarning(
+				$"Committing code changes is not allowed\n{status}");
+		}else if(HasChanges()){
+			GitMessageInput.ShowDialog();
+		}else{
+			Debug.Log("Git repository up to date; no local changes.");
 		}
 	}
 
@@ -82,7 +86,6 @@ namespace GitTools{
 		var t = Time.realtimeSinceStartup;
 		var δ = t - stamp;
 		if(δ > Delay || forceCheck || status == null){
-			//ebug.Log("Get status");
 			status = GitRunner.Cmd("status");
 			stamp = t;
 		}
